@@ -1,5 +1,3 @@
-const maxstacheStream = require('maxstache-stream')
-const maxstache = require('maxstache')
 const parallel = require('run-parallel')
 const eos = require('end-of-stream')
 const readdirp = require('readdirp')
@@ -9,6 +7,8 @@ const noop = require('noop2')
 const path = require('path')
 const pump = require('pump')
 const fs = require('graceful-fs')
+const maxstacheStream = require('./lib/maxstache-stream')
+const maxstache = require('./lib/maxstache')
 
 module.exports = copyTemplateDir
 
