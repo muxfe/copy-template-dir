@@ -1,1 +1,1 @@
-hello {{foo}} sama
+hello <@foo@> sama
