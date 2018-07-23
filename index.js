@@ -7,6 +7,7 @@ const noop = require('noop2')
 const path = require('path')
 const pump = require('pump')
 const fs = require('graceful-fs')
+const isBinaryFile = require('isbinaryfile').sync
 const maxstacheStream = require('./lib/maxstache-stream')
 const maxstache = require('./lib/maxstache')
 
@@ -67,7 +68,11 @@ function writeFile (outDir, vars, file) {
       const ts = maxstacheStream(vars)
       const ws = fs.createWriteStream(outFile)
 
-      pump(rs, ts, ws, done)
+      if (isBinaryFile(inFile)) {
+        pump(rs, ws, done)
+      } else {
+        pump(rs, ts, ws, done)
+      }
     })
   }
 }
